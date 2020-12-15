@@ -1,20 +1,23 @@
 passwords = open('passwords.txt', 'r')
 
 def check_line(pass_line):
-    pos1, pos2 = pass_line[0].split('-')
-    #print(pass_line[1][0])
 
-    pos1 = int(pos1)
-    pos2 = int(pos2)
+    string = pass_line[2]
+    string = string[0:len(string)-1]
 
-    print(pos1-1, pos2-1)
+    low, high = pass_line[0].split('-')
+    char = pass_line[1][0]
 
-    print (pass_line[2][pos1-1] == pass_line[1][0] and pass_line[2][pos2-1] != pass_line[1][0])
+    low = int(low)
+    high = int(high)
 
-
-    if (pass_line[2][pos1-1] == pass_line[1][0]) and (pass_line[2][pos2-1] != pass_line[1][0]):
+    if string[low-1] == char and string[high-1] != char:
         return True
-    else: 
+
+    elif string[low-1] != char and string[high-1] == char:
+        return True
+
+    else:
         return False
 
 checks = []
@@ -25,8 +28,5 @@ valid = 0
 for item in checks:
     if item == True:
         valid+=1
-    #print(item)
+
 print(valid)
-# print(checks[413-1])
-
-
