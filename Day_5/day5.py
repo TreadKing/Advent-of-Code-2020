@@ -1,12 +1,28 @@
-rows = list(range(128))
+testInput = 'BBFFBBFRLL'
 
-testInput = 'BFFFBBFRRR'
-actionRows = rows
-for i in range(7):
-    if testInput[i] == 'B':
-        actionRows = actionRows[0:int(len(testInput)/2)+1]
-    
-    elif testInput[i] == 'F':
-        actionRows = actionRows[int(len(testInput)/2)+1:-1]
-    
-print(actionRows)
+def findRow(ticket):
+    highRows = 127
+    lowRows = 0
+    midRows = 0
+    highCols = 7
+    lowCols = 0
+    midCols = 0
+    for i in range(len(ticket)):
+
+        midRows = (highRows + lowRows) // 2
+        midCols = (highCols + lowCols) // 2
+        if ticket[i] == 'F':
+            highRows = midRows - 1
+
+        elif ticket[i] == 'B':
+            lowRows = midRows + 1
+
+        elif ticket[i] == 'L':
+            highCols = midCols - 1
+        
+        elif ticket[i] == 'R':
+            lowCols = midCols + 1
+
+    return ((midRows + 1 )* 8) + midCols
+
+print(findRow(testInput) )
