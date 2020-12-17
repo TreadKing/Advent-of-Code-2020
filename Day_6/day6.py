@@ -1,9 +1,8 @@
 file = open('day6.txt', 'r')
-output = open('debug.txt', 'a')
-
 data = file.read()
 forms = data.split('\n\n')
 
+# part 1
 count = 0
 for form in forms:
     formSet = set(form)
@@ -13,3 +12,14 @@ for form in forms:
         count += len(formSet)
 
 print(count)
+
+# part 2
+count2 = 0
+for form in forms:
+    answersList = []
+    for answer in form.split('\n'):
+
+        answersList.append(set(answer))
+
+    count2 += len(set.intersection(*answersList))
+print(count2)
