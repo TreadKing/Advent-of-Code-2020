@@ -1,5 +1,3 @@
-testInput = 'BBFFBBFRLL'
-
 def findRow(ticket):
     highRows = 127
     lowRows = 0
@@ -25,4 +23,11 @@ def findRow(ticket):
 
     return ((midRows + 1 )* 8) + midCols
 
-print(findRow(testInput) )
+with open('seats.txt', 'r') as seats:
+    max = 0
+    for seat in seats:
+        seatId = findRow(seat.strip())
+        if seatId > max:
+            max = seatId
+
+    print(max)
