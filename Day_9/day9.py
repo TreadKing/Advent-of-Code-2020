@@ -1,12 +1,12 @@
 with open('day9.txt', 'r') as file:
     lines = file.read().split('\n')
 
-def twoSum(start, stop, target):
+def twoSum(list, start, stop, target):
     seen = set()
-    target_int = int(lines[target])
+    target_int = int(list[target])
     # print(target_int)
     for i in range(start, stop):
-        line_int = int(lines[i])
+        line_int = int(list[i])
         # print(line_int)
         if target_int - line_int in seen:
             return True
@@ -14,14 +14,17 @@ def twoSum(start, stop, target):
 
     return False
 
-print(twoSum(0, 25, 25))
 
-min = 0
-max = 25
 # part 1
-while max < len(lines):
-    if twoSum(min, max, max) == False:
-        print(lines[max])
-    min += 1
-    max += 1
+def findInvalid(list):
+    min = 0
+    max = 25    
+    while max < len(list):
+        if twoSum(list, min, max, max) == False:
+            return list[max]
+        min += 1
+        max += 1
 
+print(findInvalid(lines))
+
+#
