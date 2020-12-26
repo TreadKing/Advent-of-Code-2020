@@ -3,6 +3,7 @@ with open('day10.txt', 'r') as file:
 
 for i in range(len(lines)):
     lines[i] = int(lines[i])
+
 lines.sort()
 lines.append(lines[-1] + 3)
 lines.insert(0,0)
@@ -23,4 +24,10 @@ def findDiffs(list):
 # part 1
 print(findDiffs(lines))
 
-# for a in lines
+from collections import defaultdict
+
+counts = defaultdict(int, {0: 1})
+for a in lines[1:]:
+    counts[a] = counts[a -3] + counts[a - 2] + counts[a - 1]
+
+print(counts[lines[-1]])
