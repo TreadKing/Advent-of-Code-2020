@@ -3,15 +3,14 @@ with open('day10.txt', 'r') as file:
 
 for i in range(len(lines)):
     lines[i] = int(lines[i])
+lines.sort()
+lines.append(lines[-1] + 3)
+lines.insert(0,0)
 
 def findDiffs(list):
     diff1 = 0
-    diff3 = 1
-    list.sort()
-    if list[0] - 0 == 1:
-        diff1 += 1
-    elif list[0] - 0 == 3:
-        diff3 += 3
+    diff3 = 0
+    
     for i in range(len(list)-1):
         if lines[i+1] - lines[i] == 1:
             diff1 += 1
@@ -21,5 +20,7 @@ def findDiffs(list):
     
     return diff1 * diff3
 
-
+# part 1
 print(findDiffs(lines))
+
+# for a in lines
