@@ -19,12 +19,43 @@ def twoSum(list, start, stop, target):
 def findInvalid(list):
     min = 0
     max = 25    
-    while max < len(list):
+    while max <= len(list):
         if twoSum(list, min, max, max) == False:
-            return list[max]
+            return int(list[max])
         min += 1
         max += 1
 
-print(findInvalid(lines))
+invalid = findInvalid(lines)
+print(invalid)
 
-#
+
+# part 2
+def findWeakness(list, invalid):
+    min = 0
+    max = 1
+    sum = int(list[min]) + int(list[max])
+    while list[max] != invalid:
+        
+        if sum < invalid:
+            max += 1
+            sum += int(list[max])
+        
+        elif sum > invalid:
+            sum -= int(list[min])
+            min += 1
+
+        elif sum == invalid:
+            minValue = invalid
+            maxValue = 0
+            for i in range(min, max+1):
+                if int(list[i]) >= maxValue:
+                    maxValue = int(list[i])
+
+                if int(list[i]) <= minValue:
+                    minValue = int(list[i])
+            
+            return minValue + maxValue
+
+    return 0
+
+print(findWeakness(lines, invalid))
